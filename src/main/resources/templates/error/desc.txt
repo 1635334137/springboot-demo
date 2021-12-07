@@ -1,0 +1,2 @@
+如果用户定义了多个错误页面，则响应码.html优先级高于4xx.html、5xx.html
+动态页面优先级高于静态页面,即resources/static/error < resources/templates/error
