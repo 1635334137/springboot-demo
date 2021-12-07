@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lanzong.mapper.BookMybatisMapper">
+    <insert id="addBookMybatis" parameterType="com.lanzong.pojo.BookMybatis">
+        insert into book_mybatis(name,author) values (#{name},#{author})
+    </insert>
+    <delete id="deleteBookMybatis" parameterType="int">
+        delete from book_mybatis where id=#{id}
+    </delete>
+    <update id="updateBookMybatis" parameterType="com.lanzong.pojo.BookMybatis">
+        update book_mybatis set name=#{name},author=#{author} where id=#{id}
+    </update>
+    <select id="getBookMybatisById" parameterType="int" resultType="com.lanzong.pojo.BookMybatis">
+        select * from book_mybatis where id=#{id}
+    </select>
+    <select id="getAllBookMybatis" resultType="com.lanzong.pojo.BookMybatis">
+        select * from book_mybatis
+    </select>
+</mapper>
