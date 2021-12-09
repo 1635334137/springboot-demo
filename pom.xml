@@ -85,6 +85,36 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!--Springboot集成redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+        <!--基于Redis实现Nginx负载均衡下的session共享,由于无法在centos7中连接本地windows安装的redis，而没有成功部署项目-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
+        <!--集成Springboot JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--使用REST风格的接口规范-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <!--用于打包项目的插件，插件安装完成后，使用mvn package来打包项目生成.jar文件-->

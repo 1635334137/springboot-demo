@@ -1,0 +1,48 @@
+
+REST用法：
+
+1.添加数据使用POST请求
+请求地址为：项目地址+(类名+s)  --> 注意：类名首字母小写
+下面这个例子：类名为BookJPA 所以地址应该是 bookJPAs
+POST http://localhost:8083/demo1/bookJPAs
+Content-Type: application/json
+
+{
+ "name": "三国演绎",
+  "author": "罗贯中"
+}
+
+2.查询数据使用GET请求
+分页查询默认每页记录20,页数从0开始
+GET http://localhost:8083/demo1/bookJPAs
+Accept: application/json
+
+按照id查询：
+GET http://localhost:8083/demo1/bookJPAs/1
+Accept: application/json
+
+修改请求页码和每页记录数查询
+例子：page=0&size=3，即页码=0,记录数为3
+GET http://localhost:8083/demo1/bookJPAs?page=0&size=3
+Accept: application/json
+
+按照id倒序查询
+这个查询是按照id倒叙查询，获得第0页（也就是第一页）的数据
+GET http://localhost:8083/demo1/bookJPAs?page=0&size=3&sort=id,desc
+Accept: application/json
+
+3.修改数据使用PUT请求
+对数据的修改是通过id进行的
+PUT http://localhost:8083/demo1/bookJPAs/1
+Content-Type: application/json
+
+{
+  "name": "Java开发",
+  "author": "sdfs"
+}
+
+4.删除数据使用DELETE请求
+DELETE请求没有返回值
+DELETE http://localhost:8083/demo1/bookJPAs/1
+
+REST还有很多可以自定义的地方，这里不列了

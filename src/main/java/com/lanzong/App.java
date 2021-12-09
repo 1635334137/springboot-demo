@@ -3,6 +3,7 @@ package com.lanzong;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
  * @EnableAutoConfiguration 表示开启自动化配置，因为项目中添加了web依赖，所以会自动进行
