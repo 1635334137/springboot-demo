@@ -114,6 +114,18 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
 
+        <!--集成测试环境-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <!--使用junit4测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
@@ -138,6 +150,13 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+            </resource>
+            <!--该目录下的json文件不忽略，也进行打包加载-->
+            <resource>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*.json</include>
+                </includes>
             </resource>
         </resources>
     </build>
