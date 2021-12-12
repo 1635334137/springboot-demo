@@ -127,6 +127,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!--集成Spring Security安全框架-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!--用于打包项目的插件，插件安装完成后，使用mvn package来打包项目生成.jar文件-->

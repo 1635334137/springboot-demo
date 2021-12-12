@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * 在这个测试类的学习中踩了很多的坑
  * 1.使用@SpringbootTest注解的测试类，不用额外的指定加载的启动类：如classes=入口类App.class
- *   因为@SpringbootTest会根据路径来找，只要测试类的路径和启动类的路径一致，即同样的包路径下
+ *   因为@SpringbootTest会根据路径来找，【只要测试类的路径和启动类的路径一致，即同样的包路径下】
  *   否则无法创建测试环境：java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use
  * 2.@JsonTest不能和@SpringbootTest一起使用，包括不能和@ContextConfiguration一起使用
  *   因为代码中使用了一个配置文件book.json，所以我想着使用@ContextConfiguration来加载配置文件，因为文件放置的位置不是classes*下。
