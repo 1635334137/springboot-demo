@@ -133,6 +133,13 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!--集成 OAuth2-->
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.3.3.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <!--用于打包项目的插件，插件安装完成后，使用mvn package来打包项目生成.jar文件-->

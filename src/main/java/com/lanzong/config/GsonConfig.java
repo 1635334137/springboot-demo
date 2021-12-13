@@ -12,7 +12,7 @@ import java.lang.reflect.Modifier;
  * 自己提供一个GsonHttpMessageConverter
  * Gson配置类
  */
-@Configuration
+//@Configuration
 public class GsonConfig {
 
     @Bean

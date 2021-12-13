@@ -32,7 +32,7 @@ import java.util.Map;
  * 这个配置是基于数据库的用户管理，而不是基于内存的
  * 和MyWebSecurityConfig3是不同的
  */
-@Configuration
+//@Configuration
 public class MyWebSecurityConfig5 extends WebSecurityConfigurerAdapter {
 
     @Autowired
