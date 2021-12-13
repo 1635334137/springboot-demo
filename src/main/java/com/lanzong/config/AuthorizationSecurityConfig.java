@@ -31,6 +31,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  *
  *  4.获取新的access_token
  *  获取新的 access token 需要携带上 refresh_token ，同时授权模式设置为 refresh_token
+ *
+ *  5.项目集成的东西越多，越容易产生冲突。大家都复用的东西，像目前这个GSON冲突，以及之前的lombok冲突，网上解决是GSON自定义序列化。
  */
 @Configuration
 public class AuthorizationSecurityConfig extends WebSecurityConfigurerAdapter {
