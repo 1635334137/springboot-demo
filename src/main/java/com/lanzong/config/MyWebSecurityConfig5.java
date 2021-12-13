@@ -1,8 +1,12 @@
 package com.lanzong.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lanzong.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -26,38 +29,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 通过继承WebSecurity...Adapter实现对Spring Security的更多自定义配置
+ * 这个配置是基于数据库的用户管理，而不是基于内存的
+ * 和MyWebSecurityConfig3是不同的
  */
-//@Configuration
-public class MyWebSecurityConfig3 extends WebSecurityConfigurerAdapter {
+@Configuration
+public class MyWebSecurityConfig5 extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    UserService userService;
 
     //Spring Security5.x引入多种密码加密方式，必须指定一种
     @Bean
     PasswordEncoder passwordEncoder(){
         //对密码进行加密
-        return new BCryptPasswordEncoder(10);
+        return new BCryptPasswordEncoder();
                 //NoOpPasswordEncoder.getInstance();
     }
 
-
+    /**
+     * 配置角色的继承关系
+     */
+    @Bean
+    RoleHierarchy roleHierarchy(){
+        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+        String hierarchy = "ROLE_dba > ROLE_admin ROLE_admin > ROLE_user";
+        roleHierarchy.setHierarchy(hierarchy);
+        return roleHierarchy;
+    }
 
     /**
-     * 这种属于基于内存配置，和基于数据库配置是有区别的
+     * 基于数据库配置
      * 密码都是123
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("root").password(new BCryptPasswordEncoder().encode("123")).roles("ADMIN","DBA")
-                .and()
-                .withUser("admin").password("$2a$10$d6X4iqSwjGT5N6chqDX83eNCobUEUIjiJbp/IqocY6tvutMr98/Xe").roles("ADMIN","USER")
-                .and()
-                .withUser("lanzong").password("$2a$10$88FqhVyvexp4PshC8mWkPuaVUUeZbUy3VkVpwdM7rqxqHq6GiDkQi").roles("USER");
+        auth.userDetailsService(userService);
     }
-
-//    public static void main(String[] args) {
-//        System.out.println(new BCryptPasswordEncoder().encode("123"));
-//    }
 
     /**
      * 配置角色可访问的资源
@@ -69,9 +76,9 @@ public class MyWebSecurityConfig3 extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**")
                 .hasRole("ADMIN")
                 .antMatchers("/user/**")
-                .access("hasAnyRole('ADMIN','USER')")
+                .hasRole("USER")
                 .antMatchers("/db/**")
-                .access("hasRole('ADMIN') and hasRole('DBA')")
+                .hasRole("DBA")
                 //下两行表示除了前面的URL之外，访问其他的URL都必须认证后访问
                 .anyRequest()
                 .authenticated()

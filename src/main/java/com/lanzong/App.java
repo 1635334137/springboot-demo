@@ -1,11 +1,16 @@
 package com.lanzong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.env.Environment;
+import org.springframework.security.core.parameters.P;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+
+import java.util.Properties;
 
 /**
  * @EnableAutoConfiguration 表示开启自动化配置，因为项目中添加了web依赖，所以会自动进行
