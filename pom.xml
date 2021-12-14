@@ -140,6 +140,12 @@
             <version>2.3.3.RELEASE</version>
         </dependency>
 
+        <!--POP3/SMTP 邮件发送-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!--用于打包项目的插件，插件安装完成后，使用mvn package来打包项目生成.jar文件-->

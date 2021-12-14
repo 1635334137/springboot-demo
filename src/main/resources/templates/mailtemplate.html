@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮箱模板</title>
+</head>
+<body>
+    <div>邮箱激活</div>
+    <div>您的注册信息是：
+    <table border="1">
+        <tr>
+            <td>用户名</td>
+            <td th:text="${username}"></td>
+        </tr>
+        <tr>
+            <td>用户性别</td>
+            <td th:text="${gender}"></td>
+        </tr>
+    </table>
+    </div>
+    <a href="https://www.baidu.com">核对无误请点击本链接激活邮箱</a>
+</body>
+</html>
